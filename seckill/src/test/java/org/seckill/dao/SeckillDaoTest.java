@@ -1,16 +1,15 @@
 package org.seckill.dao;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+
 import org.seckill.entity.Seckill;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/spring-dao.xml"})
 class SeckillDaoTest {
 

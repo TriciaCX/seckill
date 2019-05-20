@@ -1,7 +1,7 @@
 package org.seckill.service.impl;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Test;
 import org.seckill.dto.Exposer;
 import org.seckill.dto.SeckillExecution;
 import org.seckill.entity.Seckill;
@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/spring-dao.xml", "classpath:spring/spring-service.xml"})
 public class SeckillServiceImplTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -73,6 +72,18 @@ public class SeckillServiceImplTest {
         }else {
             //秒杀未开启
             logger.warn("exposer={}",exposer);
+        }
+    }
+
+    @Test
+    public void executeSeckillProcedure(){
+        long seckillId =1001;
+        long phone = 1368011101;
+        Exposer exposer = seckillService.exportSeckillUrl(seckillId);
+        if (exposer.isExposed()){
+            String md5 = exposer.getMd5();
+            SeckillExecution execution = seckillService.executeSeckillProcedure(seckillId,phone,md5);
+            logger.info(execution.getStateInfo());
         }
     }
 }
